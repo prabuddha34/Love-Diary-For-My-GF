@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Diary for You ❤️</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff0f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background: #ff69b4;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  main {
+    padding: 20px;
+    max-width: 700px;
+    margin: auto;
+  }
+  .entry {
+    background: #ffe4e1;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  .entry h2 {
+    margin-top: 0;
+    color: #c71585;
+  }
+  .entry p {
+    margin: 5px 0;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>My Diary for You ❤️</h1>
+  <p>Starting September 1, 2025</p>
+</header>
+
+<main id="diary">
+  <!-- Diary entries will be injected here -->
+</main>
+
+<script>
+  // Function to generate dates from today to next year
+  function generateDates(startDate, endDate) {
+    let dates = [];
+    let current = new Date(startDate);
+    while (current <= endDate) {
+      dates.push(new Date(current));
+      current.setDate(current.getDate() + 1);
+    }
+    return dates;
+  }
+
+  const startDate = new Date('2025-09-01');
+  const endDate = new Date('2026-09-01');
+  const allDates = generateDates(startDate, endDate);
+
+  const diaryContainer = document.getElementById('diary');
+
+  allDates.forEach((date, index) => {
+    const entryDiv = document.createElement('div');
+    entryDiv.className = 'entry';
+
+    // Format date nicely
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+
+    // Personalized entry for today
+    let thought, memory, reason;
+    if (index === 0) {
+      thought = "Today I thought about how deeply I love you, more than words can ever express.";
+      memory = "Every moment with you feels magical and unforgettable.";
+      reason = "You are the most precious part of my life, and I love you endlessly.";
+    }
+    else if(index == 1){
+     thought="Today I thought about how your smile lights up my world.";
+     memory="I cherish the laughter we share and the joy you bring.";
+     reason="Your happiness is my happiness, and I love you for it.";
+    }
+    else {
+      thought = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+      memory = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+      reason = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    }
+
+    entryDiv.innerHTML = `
+      <h2>${formattedDate}</h2>
+      <p><strong>Thought of the Day:</strong> ${thought}</p>
+      <p><strong>Memory/Story:</strong> ${memory}</p>
+      <p><strong>Reason I Love You Today:</strong> ${reason}</p>
+    `;
+
+    diaryContainer.appendChild(entryDiv);
+  });
+</script>
+</body>
+</html>
